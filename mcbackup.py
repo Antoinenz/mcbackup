@@ -254,7 +254,7 @@ def changes_since(src, ts, excludes):
                 continue
             newest = max(newest, mt)
             parts = p.split(os.sep)
-            if "playerdata" in parts or "stats" in parts or "advancements" in parts or "userdata" in parts:
+            if any(p in parts for p in ("playerdata", "players", "stats", "advancements", "userdata")):
                 counts["player"] += 1
             elif any(os.path.join(root, parts[0]) == w for w in src.worlds):
                 counts["world"] += 1

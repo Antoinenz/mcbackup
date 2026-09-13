@@ -11,7 +11,7 @@ unless something changed.
    `None` means the server is down or not answering.
 2. **Changed files** — walks the instance directory (skipping excludes) and counts files whose
    mtime is newer than the last snapshot, bucketed as:
-   - `player` — anything under `playerdata/`, `stats/`, `advancements/` or a plugin `userdata/` dir
+   - `player` — anything under `playerdata/` (or `players/` on 26.x worlds), `stats/`, `advancements/` or a plugin `userdata/` dir
    - `world` — anything else inside a world folder (region, entities, poi, level.dat…)
    - `plugins` — anything under `plugins/`
    - `other` — everything else (server configs, jars…)
