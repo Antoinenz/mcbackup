@@ -1,0 +1,37 @@
+# mcbackup configuration. Secrets live in /opt/mcbackup/env.
+
+# restic exclude patterns (also protected from deletion on --in-place restores)
+exclude = [
+  "*.zip", "*.tar", "*.tar.gz", "*.7z",
+  "logs", "cache", "libraries", "versions", "crash-reports",
+  "plugins/*/libs", "plugins/*/.cache", "bluemap/web",
+  "plugins/DHSupport/data.sqlite",   # Distant Horizons LOD cache, regenerated from the world
+  "session.lock", ".console_history",
+]
+
+[mcsmanager]
+instance_config_dir = "/opt/mcsmanager/daemon/data/InstanceConfig"
+ignore = ["__MCSM_GLOBAL_INSTANCE__"]        # nicknames or instance uuids to skip
+
+# Manual sources: directories or .zip archives outside MCSManager.
+# manual = true  -> never touched by the daemon; back up with `mcbackup backup <name>`.
+[[sources]]
+name = "old-server"
+path = "/srv/archives/old-server.zip"
+manual = true
+
+[policy]
+tick_seconds = 300           # how often the daemon looks at each instance
+online_interval_min = 30     # while players are online: snapshot at most every N minutes
+after_session_min = 10       # snapshot N minutes after the last player-related change (end of session)
+max_interval_hours = 24      # if anything changed at all, snapshot at least this often
+auto_checkpoint_days = 7     # promote a snapshot to a pinned checkpoint weekly
+flush_before_backup = true   # save-off / save-all flush / save-on via MCSManager API (needs MCSM_APIKEY)
+flush_wait_seconds = 5
+
+[retention]                  # applied once a day; checkpoints and imports are never pruned
+keep_last = 10
+keep_hourly = 48
+keep_daily = 30
+keep_weekly = 26
+keep_monthly = 36

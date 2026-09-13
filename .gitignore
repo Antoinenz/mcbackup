@@ -1,0 +1,10 @@
+# local secrets and runtime state (never commit these)
+env
+config.toml
+state.json
+*.log
+.lock
+restores/
+tmp/
+__pycache__/
+*.pyc
