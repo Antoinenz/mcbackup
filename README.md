@@ -88,7 +88,7 @@ All intervals are configurable. Full rules, checkpoint promotion and retention i
 
 ## Documentation
 
-| | |
+| url | description |
 |---|---|
 | [docs/CONFIGURATION.md](docs/CONFIGURATION.md) | every `env` variable and `config.toml` key, exclude patterns, manual sources |
 | [docs/SCHEDULING.md](docs/SCHEDULING.md) | the decision rules, checkpoints, retention, the flush step |
